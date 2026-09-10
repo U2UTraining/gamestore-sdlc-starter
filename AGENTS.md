@@ -79,3 +79,12 @@ The API listens on `http://localhost:5038`. The SQLite database is created on st
 
 There is no test project yet. If a spec needs verification steps that require tests,
 raise that as an open question rather than assuming a framework.
+
+## Validation requirements 
+After changing C# code: 
+1. Run `dotnet build --no-restore`. 
+2. Read all compiler and analyzer diagnostics. 
+3. Fix diagnostics introduced by the change. 
+4. Do not suppress rules merely to make the build pass. 
+5. Run the relevant tests. 
+6. Repeat validation after the final edit.
