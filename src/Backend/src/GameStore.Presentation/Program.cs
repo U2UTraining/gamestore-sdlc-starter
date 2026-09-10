@@ -23,6 +23,7 @@ await app.Services.EnsureDatabaseCreatedAsync();
 if (app.Environment.IsDevelopment())
 {
   app.UseCors(DevelopmentCorsPolicy);
+  await app.Services.SeedDevelopmentDataAsync();
 }
 
 app.MapApiEndpoints();
