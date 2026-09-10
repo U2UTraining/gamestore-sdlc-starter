@@ -1,0 +1,82 @@
+<!doctype html>
+<!--
+  ============================================================================
+  OPTION <A|B|C> — <name of the idea>
+
+  The idea in one sentence: <what this option believes about the problem>
+
+  Differs from the others by: <the axis this option sits at one end of>
+  ============================================================================
+-->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GameStore — <component> — Option <A></title>
+
+  <!-- DaisyUI + Tailwind from CDN so this file opens with no build step. -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Mockup chrome only — not part of the design being reviewed. */
+    body { background: #f6f6f7; }
+    .mock-state { max-width: 56rem; margin: 0 auto 3rem; }
+    .mock-state > h2 {
+      font: 600 0.75rem/1 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280;
+      padding-bottom: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid #e5e7eb;
+    }
+    .mock-state > h2 span { text-transform: none; letter-spacing: 0; color: #9ca3af; font-weight: 400; }
+  </style>
+</head>
+<body class="p-8">
+
+  <header class="max-w-4xl mx-auto mb-10">
+    <p class="text-xs uppercase tracking-widest text-gray-500">GameStore mockup</p>
+    <h1 class="text-2xl font-semibold">&lt;Component&gt; — Option &lt;A&gt;: &lt;idea&gt;</h1>
+    <p class="text-sm text-gray-600 mt-1">&lt;One sentence on what this option is betting on.&gt;</p>
+  </header>
+
+  <!--
+    Every state gets its own section. Do not delete the awkward ones — they are the
+    reason this file exists. Add more where the component has them.
+  -->
+
+  <section class="mock-state">
+    <h2>Populated <span>— the ordinary case</span></h2>
+
+    <!-- Real content. Real board game names, real prices: 49,99 € not $XX.XX -->
+
+  </section>
+
+  <section class="mock-state">
+    <h2>Empty <span>— nothing to show yet</span></h2>
+
+    <!-- What does the Customer see, and what are they invited to do about it? -->
+
+  </section>
+
+  <section class="mock-state">
+    <h2>Loading <span>— waiting on the API</span></h2>
+
+    <!-- Skeleton or spinner. Say in a comment what it is waiting for. -->
+
+  </section>
+
+  <section class="mock-state">
+    <h2>Error <span>— the request failed</span></h2>
+
+    <!-- Can the Customer retry? Is the rest of the page still usable? -->
+
+  </section>
+
+  <section class="mock-state">
+    <h2>Edges <span>— long names, large numbers, single item, zero balance</span></h2>
+
+    <!-- The states that break layouts. Include at least the ones that apply here. -->
+
+  </section>
+
+</body>
+</html>
