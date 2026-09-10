@@ -18,7 +18,7 @@ having been wrong is the most useful part of the archive.
 | **Consequences** | What it costs. Both the good and the bad — an ADR with only upsides in this section is not finished. |
 
 The template lives with the skill that fills it in:
-[`.github/skills/design-options/assets/adr-template.md`](../../.github/skills/design-options/assets/adr-template.md).
+[`.github/skills/interview/assets/adr-template.md`](../../.github/skills/interview/assets/adr-template.md).
 Copy it from there — there is deliberately no second copy in this folder to drift out
 of step with it.
 

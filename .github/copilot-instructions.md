@@ -7,5 +7,5 @@ Two rules matter more than the rest:
 
 1. Use the terms in [docs/glossary.md](../docs/glossary.md) exactly, and never introduce a
    synonym for a term listed there.
-2. During analysis (interview, glossary, design options, spec, mockups, issues),
+2. During analysis (interview, glossary, spec, mockups, issues),
    produce documents — not application code.

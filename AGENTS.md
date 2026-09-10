@@ -46,15 +46,15 @@ also invoke them directly with `/`.
 Analysis precedes implementation, and each step produces a written artifact that the
 next step consumes:
 
-1. **Interview** — clarify the request until the ambiguity is gone (`/interview`)
+1. **Interview** — clarify the request until the ambiguity is gone (`/interview`), and
+   draft an ADR if an architectural choice surfaced
 2. **Glossary** — name the new concepts before modelling them (`/glossary-audit`)
-3. **Design options** — compare approaches, record the choice as an ADR (`/design-options`)
-4. **Spec** — write `docs/specs/NNN-slug/spec.md` (`/spec`)
-5. **Mockups** — compare UI options, keep the winner in `docs/design/` (`/mockups`)
-6. **Issues** — split the spec into independently workable issues (`/spec-to-issues`)
-7. **Implement** — one issue at a time, grounded in the spec and the ADRs
+3. **Spec** — write `docs/specs/NNN-slug/spec.md` (`/spec`)
+4. **Mockups** — compare UI options, keep the winner in `docs/design/` (`/mockups`)
+5. **Issues** — split the spec into independently workable issues (`/spec-to-issues`)
+6. **Implement** — one issue at a time, grounded in the spec and the ADRs
 
-During steps 1–6, **do not write application code.** Producing documents, mockups and
+During steps 1–5, **do not write application code.** Producing documents, mockups and
 issues is the work. If you catch yourself opening a `.cs` file to edit it during
 analysis, stop and ask.
 

@@ -21,11 +21,15 @@ written down somewhere it can be linked to.
 | --- | --- | --- | --- |
 | 1. Interview | `interview` | Shared understanding | The request, the codebase |
 | 2. Glossary | `glossary-audit` | Terms in `glossary.md` | The codebase |
-| 3. (Optional) Design options | `design-options` | An ADR in `adr/` | Glossary, existing ADRs |
-| 4. Spec | `spec` | `specs/NNN-slug/spec.md` | Glossary, ADRs |
-| 5. (Optional) Mockups | `mockups` | Options to compare; winner to `design/` | Spec |
-| 6. Issues | `spec-to-issues` | GitHub issues | Spec, ADRs, mockups |
-| 7. Implement | — | Code | Everything above |
+| 3. Spec | `spec` | `specs/NNN-slug/spec.md` | Glossary, ADRs |
+| 4. (Optional) Mockups | `mockups` | Options to compare; winner to `design/` | Spec |
+| 5. Issues | `spec-to-issues` | GitHub issues | Spec, ADRs, mockups |
+| 6. Implement | — | Code | Everything above |
+
+There is no separate step for architecture decisions. When the interview turns up a
+choice that constrains code which does not exist yet, `interview` drafts the ADR as part
+of finishing — and when it does not, which is most of the time, nothing is written.
+[docs/adr/README.md](adr/README.md) has the test.
 
 Each is a skill in [`.github/skills/`](../.github/skills/). The agent loads one when the
 task calls for it, or you can invoke it directly by typing `/` in chat. The templates
