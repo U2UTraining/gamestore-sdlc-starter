@@ -13,7 +13,7 @@ of the work here is *deciding what to build*, and only then building it.
 | `src/Backend/src/GameStore.Application/` | Use cases, repository interfaces, event handlers |
 | `src/Backend/src/GameStore.Infrastructure/` | EF Core, repositories, event publishing, email mock |
 | `src/Backend/src/GameStore.Presentation/` | Minimal API endpoints |
-| `src/Frontend/` | Angular client (not built yet) |
+| `src/Frontend/` | Angular client: catalogue, Game detail, Shopping Basket, Checkout |
 | `docs/glossary.md` | The ubiquitous language. Binding. |
 | `docs/adr/` | Architecture decision records. Binding. |
 | `docs/specs/` | One folder per feature: `NNN-slug/spec.md` |
