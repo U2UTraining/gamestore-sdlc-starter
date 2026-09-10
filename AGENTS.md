@@ -82,9 +82,10 @@ raise that as an open question rather than assuming a framework.
 
 ## Validation requirements 
 After changing C# code: 
-1. Run `dotnet build --no-restore`. 
+1. Run `dotnet build src/Backend/GameStore.slnx --no-restore`. 
 2. Read all compiler and analyzer diagnostics. 
 3. Fix diagnostics introduced by the change. 
 4. Do not suppress rules merely to make the build pass. 
-5. Run the relevant tests. 
+5. Run any tests covering the change. There is no test project today, so this is
+   usually a no-op — do not create one to satisfy this step. 
 6. Repeat validation after the final edit.
