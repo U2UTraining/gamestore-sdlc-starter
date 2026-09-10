@@ -1,0 +1,109 @@
+<h1 class="mb-4 text-2xl font-bold">Shopping Basket</h1>
+
+@if (changeError(); as message) {
+  <div class="alert alert-error mb-4">
+    <span>{{ message }}</span>
+  </div>
+}
+
+@switch (shoppingBasket.state()) {
+  <!-- Loading -->
+  @case ('loading') {
+    <div class="card bg-base-100 shadow-sm">
+      <div class="card-body space-y-3">
+        @for (placeholder of loadingPlaceholders; track placeholder) {
+          <div class="skeleton h-10 w-full"></div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Error -->
+  @case ('error') {
+    <div class="alert alert-error">
+      <div>
+        <h2 class="font-semibold">Your Shopping Basket could not be loaded.</h2>
+        <p class="text-sm">{{ shoppingBasket.error() }}</p>
+      </div>
+      <button type="button" class="btn btn-sm" (click)="reload()">Try again</button>
+    </div>
+  }
+
+  <!-- Loaded -->
+  @default {
+    @if (shoppingBasket.isEmpty()) {
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title">Your Shopping Basket is empty</h2>
+          <p class="opacity-70">Add a Game from the catalogue to get started.</p>
+          <a routerLink="/games" class="btn btn-primary btn-sm">Browse the Game catalogue</a>
+        </div>
+      </div>
+    } @else {
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+          <div class="overflow-x-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Game</th>
+                  <th class="text-right">Unit Price</th>
+                  <th class="text-center">Quantity</th>
+                  <th class="text-right">Line Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (line of shoppingBasket.lines(); track line.gameId) {
+                  <tr>
+                    <td>
+                      <a class="link link-hover" [routerLink]="['/games', line.gameId]">
+                        {{ line.gameName }}
+                      </a>
+                    </td>
+                    <td class="text-right">{{ line.unitPrice | money: line.currency }}</td>
+                    <td>
+                      <div class="flex items-center justify-center gap-2">
+                        <span>{{ line.quantity }}</span>
+                        <button
+                          type="button"
+                          class="btn btn-ghost btn-xs"
+                          title="Add one more copy of this Game"
+                          [disabled]="changingGameId() !== null"
+                          (click)="addOneMore(line)"
+                        >
+                          @if (changingGameId() === line.gameId) {
+                            <span class="loading loading-spinner loading-xs"></span>
+                          } @else {
+                            +
+                          }
+                        </button>
+                      </div>
+                    </td>
+                    <td class="text-right">{{ line.lineTotal | money: line.currency }}</td>
+                  </tr>
+                }
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="3" class="text-right">Subtotal</th>
+                  <th class="text-right text-base">
+                    {{ shoppingBasket.subtotal() | money: shoppingBasket.currency() }}
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <p class="mt-2 text-xs opacity-60">
+            Any Discount and the Final Total are worked out at Checkout.
+          </p>
+
+          <div class="card-actions mt-4 justify-end">
+            <a routerLink="/games" class="btn btn-ghost btn-sm">Keep browsing</a>
+            <a routerLink="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+          </div>
+        </div>
+      </div>
+    }
+  }
+}

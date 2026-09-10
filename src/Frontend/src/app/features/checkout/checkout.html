@@ -1,0 +1,102 @@
+<h1 class="mb-4 text-2xl font-bold">Checkout</h1>
+
+@if (placed()) {
+  <!-- Placed: the Shopping Basket has been cleared by the API. -->
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body items-center text-center">
+      <div class="alert alert-success">
+        <span>Your Order has been placed.</span>
+      </div>
+      <p class="max-w-md text-sm opacity-70">
+        Your Shopping Basket has been emptied. The API does not return the Order Number,
+        so it cannot be shown here.
+      </p>
+      <a routerLink="/games" class="btn btn-primary btn-sm">Back to the Game catalogue</a>
+    </div>
+  </div>
+} @else {
+  @switch (shoppingBasket.state()) {
+    <!-- Loading -->
+    @case ('loading') {
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body space-y-3">
+          @for (placeholder of loadingPlaceholders; track placeholder) {
+            <div class="skeleton h-10 w-full"></div>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Error -->
+    @case ('error') {
+      <div class="alert alert-error">
+        <div>
+          <h2 class="font-semibold">Your Shopping Basket could not be loaded.</h2>
+          <p class="text-sm">{{ shoppingBasket.error() }}</p>
+        </div>
+        <button type="button" class="btn btn-sm" (click)="reload()">Try again</button>
+      </div>
+    }
+
+    <!-- Loaded -->
+    @default {
+      @if (shoppingBasket.isEmpty()) {
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">There is nothing to check out</h2>
+            <p class="opacity-70">Your Shopping Basket is empty.</p>
+            <a routerLink="/games" class="btn btn-primary btn-sm">Browse the Game catalogue</a>
+          </div>
+        </div>
+      } @else {
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title text-lg">Your Order</h2>
+
+            <ul class="divide-y divide-base-200">
+              @for (line of shoppingBasket.lines(); track line.gameId) {
+                <li class="flex items-baseline justify-between gap-4 py-2">
+                  <span>
+                    {{ line.gameName }}
+                    <span class="opacity-60">
+                      &times; {{ line.quantity }} at {{ line.unitPrice | money: line.currency }}
+                    </span>
+                  </span>
+                  <span class="font-medium">{{ line.lineTotal | money: line.currency }}</span>
+                </li>
+              }
+            </ul>
+
+            <div class="mt-2 flex items-baseline justify-between border-t border-base-300 pt-3">
+              <span class="font-semibold">Subtotal</span>
+              <span class="text-xl font-semibold">
+                {{ shoppingBasket.subtotal() | money: shoppingBasket.currency() }}
+              </span>
+            </div>
+
+            <p class="mt-2 text-xs opacity-60">
+              Any Discount and the Final Total are fixed by the API at Checkout. A VIP
+              Customer gets 10% off at the weekend.
+            </p>
+
+            @if (placeError(); as message) {
+              <div class="alert alert-error mt-4">
+                <span>{{ message }}</span>
+              </div>
+            }
+
+            <div class="card-actions mt-4 justify-end">
+              <a routerLink="/shopping-basket" class="btn btn-ghost btn-sm">Back to the Shopping Basket</a>
+              <button type="button" class="btn btn-primary" [disabled]="placing()" (click)="placeOrder()">
+                @if (placing()) {
+                  <span class="loading loading-spinner loading-sm"></span>
+                }
+                Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  }
+}

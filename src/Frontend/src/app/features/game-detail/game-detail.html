@@ -1,0 +1,120 @@
+<a routerLink="/games" class="btn btn-ghost btn-sm mb-4">&larr; Back to the Game catalogue</a>
+
+@switch (state()) {
+  <!-- Loading -->
+  @case ('loading') {
+    <div class="card bg-base-100 shadow-sm">
+      <div class="card-body gap-4 md:flex-row">
+        <div class="skeleton h-56 w-full md:w-72"></div>
+        <div class="flex-1 space-y-3">
+          <div class="skeleton h-7 w-2/3"></div>
+          <div class="skeleton h-4 w-1/3"></div>
+          <div class="skeleton h-6 w-1/4"></div>
+          <div class="skeleton h-10 w-48"></div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Error -->
+  @case ('error') {
+    <div class="alert alert-error">
+      <div>
+        <h2 class="font-semibold">This Game could not be loaded.</h2>
+        <p class="text-sm">{{ error() }}</p>
+      </div>
+      <button type="button" class="btn btn-sm" (click)="reload()">Try again</button>
+    </div>
+  }
+
+  <!-- Loaded -->
+  @default {
+    @if (notFound()) {
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body items-center text-center">
+          <h1 class="card-title">This Game does not exist</h1>
+          <p class="opacity-70">There is no Game with id {{ id() }} in the catalogue.</p>
+          <a routerLink="/games" class="btn btn-primary btn-sm">Back to the Game catalogue</a>
+        </div>
+      </div>
+    } @else if (game(); as game) {
+      <article class="card bg-base-100 shadow-sm">
+        <div class="card-body gap-6 md:flex-row">
+          <figure class="h-56 w-full shrink-0 overflow-hidden rounded-lg bg-base-300 md:w-72">
+            <img
+              [src]="game.imageUrl"
+              [alt]="game.name"
+              class="h-full w-full object-cover"
+              (error)="onImageError($event)"
+            />
+          </figure>
+
+          <div class="flex-1">
+            <h1 class="text-2xl font-bold">{{ game.name }}</h1>
+            <p class="mt-1 opacity-70">Published by {{ game.publisherName }}</p>
+
+            <p class="mt-4 text-3xl font-semibold">{{ game.price | money: game.currency }}</p>
+
+            <p class="mt-1 text-sm opacity-70">Stock Quantity: {{ game.stockQuantity }}</p>
+
+            @if (game.stockQuantity === 0) {
+              <div class="alert alert-warning mt-4">
+                <span>This Game is out of stock. It can still be added to your Shopping
+                  Basket — Stock Quantity is only checked when the Order is placed.</span>
+              </div>
+            }
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <div class="join">
+                <button
+                  type="button"
+                  class="btn join-item btn-sm"
+                  [disabled]="quantity() <= 1"
+                  (click)="changeQuantity(-1)"
+                >
+                  &minus;
+                </button>
+                <span class="join-item flex w-14 items-center justify-center bg-base-200 text-sm">
+                  {{ quantity() }}
+                </span>
+                <button
+                  type="button"
+                  class="btn join-item btn-sm"
+                  [disabled]="quantity() >= maxQuantity()"
+                  (click)="changeQuantity(1)"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                [disabled]="adding()"
+                (click)="addToShoppingBasket(game)"
+              >
+                @if (adding()) {
+                  <span class="loading loading-spinner loading-sm"></span>
+                }
+                Add to Shopping Basket
+              </button>
+            </div>
+
+            @if (added()) {
+              <div class="alert alert-success mt-4">
+                <span>Added to your Shopping Basket.</span>
+                <a routerLink="/shopping-basket" class="btn btn-sm">View Shopping Basket</a>
+              </div>
+            }
+
+            @if (addError(); as message) {
+              <div class="alert alert-error mt-4">
+                <span>{{ message }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  }
+}
