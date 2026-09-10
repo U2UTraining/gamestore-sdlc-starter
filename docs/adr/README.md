@@ -44,6 +44,7 @@ When you accept a new ADR, check whether an instruction file needs to change wit
 | [0006](0006-minimal-api-endpoints-grouped-by-feature.md) | Minimal API endpoints grouped by feature, no controllers | accepted | presentation |
 | [0007](0007-single-currency-money-no-conversion.md) | Money carries its currency; no conversion at write time | accepted | domain |
 | [0008](0008-order-carries-a-single-discount-amount.md) | An Order carries a single discount amount | accepted | domain |
+| [0009](0009-frontend-stack.md) | Angular standalone components, Tailwind and DaisyUI, state in signals | accepted | frontend |
 
 ## A note on dates
 

@@ -6,7 +6,10 @@ applyTo: "src/Frontend/**"
 
 # Frontend
 
-Angular client for the GameStore API. **Not built yet** — when it is, these rules apply.
+Angular client for the GameStore API. It lives in `src/Frontend/` and has four screens:
+the Game catalogue, a Game's detail, the Shopping Basket and Checkout.
+
+Binding decision: [ADR-0009](../../docs/adr/0009-frontend-stack.md).
 
 ## Language
 
@@ -33,9 +36,9 @@ not a suggestion. When implementing a component that has one:
 
 ## API
 
-The backend is at `http://localhost:5038`. **It has no CORS configuration** — that has
-to be added to `Program.cs` before the client can call it, and that is a deliberate
-backend change.
+The backend is at `http://localhost:5038`. It allows any origin in Development
+(`Program.cs`), so there is no proxy here. Widening that policy, or making it apply
+outside Development, is a deliberate backend change.
 
 Responses are anonymous objects assembled by hand in the endpoints, so the wire shape is
 whatever those files say. Read the endpoint before writing the client model; do not
@@ -46,8 +49,18 @@ There is no authentication. `customerId` is passed in the route.
 
 ## Stack
 
-Tailwind and DaisyUI, matching the mockups.
+Angular with standalone components, Tailwind and DaisyUI matching the mockups, and state
+held in signals inside services. [ADR-0009](../../docs/adr/0009-frontend-stack.md) has
+the rules and the reasoning:
 
-Nothing else is decided yet — state management, HTTP layer, routing, testing. Those are
-open decisions. When one has to be made, it is an ADR
-(`applies to: frontend`), not a choice made silently inside a component.
+- Components inject a service, never `HttpClient`.
+- Shared state lives in `core/*.service.ts` as read-only signals with `computed`
+  derivations. A component keeps only state that is its own.
+- Each screen carries one `LoadState` (`idle | loading | loaded | error`). Empty is not
+  one of them: a screen is `loaded` and asks its data whether it is empty.
+- Wire shapes stay private to the service that calls the endpoint and are mapped onto
+  glossary-named models on the way in.
+
+**Testing is still an open decision.** There is no spec in the project and no ADR for
+how to write one. When that has to be settled it is an ADR (`applies to: frontend`), not
+a choice made silently inside a component.
