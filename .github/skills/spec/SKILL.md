@@ -1,72 +1,26 @@
 ---
 name: spec
-description: Write a feature spec grounded in the glossary and the ADRs, using the repository's six-section template. Use when asked to write a spec, specify a feature, turn an interview into requirements, or produce something an implementation can be split from.
+description: "Use when writing a feature spec, specifying a feature, turning an interview into requirements, or producing something an implementation can be split from."
 ---
 
-# Spec
+1. **Read first**: [docs/glossary.md](../../../docs/glossary.md), [docs/adr/](../../../docs/adr/), and the parts of `src/` the feature touches. A requirement that contradicts how the system already works is worse than a missing one. Cite `file:line` wherever the spec depends on current behaviour.
 
-A spec exists so that implementation can be split up and handed off without the person
-doing the work having to reconstruct the reasoning.
+2. **Write `docs/specs/NNN-slug/spec.md`** from [assets/spec-template.md](assets/spec-template.md), taking the next free number. Ask for the slug if it is not obvious. The six sections are fixed.
 
-Write it to `docs/specs/NNN-slug/spec.md`, taking the next free number. Ask the user for
-the slug if it is not obvious.
+3. **Do not invent requirements.** Whatever the repository and the conversation do not settle goes under Open questions. A plausible guess written as a requirement is worse than a blank, because nobody goes back to check it.
 
-Copy [assets/spec-template.md](assets/spec-template.md) and fill it in. The six sections
-are fixed.
+4. **Every noun in Requirements is a glossary term.** If the feature needs a concept the glossary lacks, do not coin a word — raise it as an open question and note that the glossary needs the entry first.
 
-## Before you write
+5. **Link an ADR for each architectural constraint** instead of restating it. If the feature cannot be built within the accepted ADRs, name the one that must be superseded and stop; designing the replacement is the `design-options` skill.
 
-Read [docs/glossary.md](../../../docs/glossary.md), the ADRs in
-[docs/adr/](../../../docs/adr/), and the parts of `src/` this feature touches.
+6. **Each section has to pass its own test:**
+   - **Goal** — one sentence, names who benefits, describes the outcome and not the work.
+   - **Scope** — the out-of-scope list may not be empty. If nothing is out of scope the goal is too vague; say so.
+   - **Requirements** — numbered, independently checkable, one idea each. Split any containing "and".
+   - **Acceptance criteria** — observable behaviour under the requirement number it verifies, including the unhappy paths. Someone who has not read the spec can tell whether each holds.
+   - **Constraints** — stack, patterns, performance, security, compatibility.
+   - **Open questions** — a table, every row with an owner. Empty claims nothing is undecided, which is almost never true.
 
-A requirement that contradicts how the system already works is worse than a missing one.
-Where the spec depends on current behaviour, cite `file:line` so the reader can check
-it.
+7. **No code, not even a type sketch.** A spec containing an implementation gets reviewed as an implementation.
 
-## The three rules
-
-**Do not invent requirements.** Anything you cannot determine from the repository or
-from the conversation goes under **Open questions**. A plausible guess written as a
-requirement is worse than a blank, because nobody will ever go back and check it.
-
-**Ground every term in the glossary.** Every noun in the Requirements section is either
-a glossary term or a mistake. If the feature needs a concept the glossary does not have,
-do not invent a word for it — raise it as an open question and note that the glossary
-needs the entry first.
-
-**Ground every pattern in an ADR.** Link the ADR rather than restating it. If the
-feature cannot be built within the accepted ADRs, name the one that must be superseded
-and stop there — designing the replacement is the `design-options` skill, not this one.
-
-## What each section has to satisfy
-
-**Goal** — one sentence. Names who benefits. Describes the outcome, not the work.
-
-**Scope** — the out-of-scope list may not be empty. If you genuinely cannot think of
-anything that is out of scope, the goal is too vague; say so rather than padding it.
-
-**Requirements** — numbered, independently checkable, one idea each. Split any
-requirement containing "and".
-
-**Acceptance criteria** — observable behaviour, grouped under the requirement number it
-verifies. Someone who has not read the spec should be able to tell whether each one
-holds. Include the unhappy paths that came out of the interview, not only the happy
-path.
-
-**Constraints** — stack, patterns, performance, security, compatibility. An ADR link
-per architectural constraint.
-
-**Open questions** — a table, and every row has an owner. A question with no owner will
-not get answered. This section being empty is a claim that nothing is undecided, which
-is almost never true.
-
-## Do not
-
-Write code. Not even a type sketch. The spec describes behaviour that can be checked
-from outside; the moment it contains an implementation, reviewers start reviewing the
-implementation instead of the requirements.
-
-## Then
-
-Report which requirements are blocked by an unanswered open question. Those cannot
-become issues yet. Offer the `spec-to-issues` skill for the rest.
+8. **Report which requirements are blocked** by an unanswered open question — those cannot become issues yet — then offer `spec-to-issues`.

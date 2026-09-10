@@ -1,73 +1,34 @@
 ---
 name: spec-to-issues
-description: Split a spec into independently workable GitHub issues and create them with the gh CLI. Use when asked to break down a spec, create issues or tickets, plan implementation work, or turn requirements into tasks.
+description: "Use when breaking a spec into GitHub issues, creating tickets, planning implementation work, or turning requirements into tasks. Creates them with the gh CLI."
 ---
 
-# Spec to issues
+**The issue is the prompt: write it so that someone who has read nothing else can start.**
 
-**The issue is the prompt, so write it like one.** Assume the person picking it up — or
-the agent picking it up — has read nothing else. Everything needed to start work is
-either in the issue or one click away.
+1. **Read** the spec, [docs/glossary.md](../../../docs/glossary.md), and the ADRs the spec links.
 
-Read the spec, [docs/glossary.md](../../../docs/glossary.md) and the ADRs the spec
-links, before you split anything.
+2. **Split along layer boundaries** ([ADR-0001](../../../docs/adr/0001-clean-architecture-layering.md)) where the layers genuinely separate. One issue is one sitting. "Implement the feature" is not a split.
 
-## Every issue contains
+3. **Order by risk, not by ease.** The change that could invalidate the others goes first, while there is still time to react. An issue that changes a shared type the others build on goes first, and every dependent issue names it.
 
-Use [assets/issue-template.md](assets/issue-template.md).
+4. **No issue may depend on an unanswered open question.** Do not write it — list it at the end as blocked, naming the question and its owner.
 
-- **A goal in one sentence**, plus links to the spec and to the ADRs that constrain the
-  work.
-- **Acceptance criteria copied from the spec, not paraphrased.** Verbatim, keeping the
-  requirement numbers. If you want to reword a criterion, the spec is wrong — fix the
-  spec first, then copy it.
-- **The files or folders the change is expected to touch.** Real paths, checked against
-  the repository. Not a guess.
-- **An explicit out of scope line.** What a reasonable person might otherwise pull into
-  this issue, and which issue it belongs to instead.
-- **How to verify it.** The command to run, the request to send, the state to inspect.
-  `dotnet build src/Backend/GameStore.slnx` is a start, not an answer — say what the
-  person should observe.
+5. **Each issue** uses [assets/issue-template.md](assets/issue-template.md) and contains:
+   - a one-sentence goal, plus links to the spec and to the constraining ADRs;
+   - **acceptance criteria copied verbatim** from the spec, keeping the requirement numbers — wanting to reword one means the spec is wrong, so fix the spec first;
+   - the files or folders it is expected to touch, as real paths checked against the repository;
+   - an explicit out-of-scope line, naming which issue the excluded work belongs to;
+   - how to verify it: the command, the request, the state to inspect. `dotnet build src/Backend/GameStore.slnx` is a start, not an answer.
 
-## How to split
+6. **Show the plan and wait for approval** — title, one-line goal, dependencies, in order. Create nothing before then.
 
-- **Along layer boundaries** where the layers are genuinely separable — see
-  [ADR-0001](../../../docs/adr/0001-clean-architecture-layering.md). A single issue
-  saying "implement the feature" is not a split.
-- **One issue is one sitting.** If you cannot say what "done" looks like in a sentence,
-  it is too big.
-- **Say what blocks what.** Name dependencies explicitly in the body. Where one issue
-  changes a shared type the others build on, it goes first, and every dependent issue
-  says so.
-- **No issue may depend on an unanswered open question.** If one would, do not write it.
-  List it at the end as blocked, naming the open question and its owner.
+7. **Create with `gh`**, writing each body to a temporary file, since Markdown, backticks and newlines do not survive shell quoting:
 
-Riskiest issue first, not easiest. The change that could invalidate the others should be
-the one that gets done while there is still time to react.
+   ```bash
+   gh label list
+   gh issue create --title "..." --body-file <path> --label "..."
+   ```
 
-## Creating them
+   Use labels that already exist; do not invent one without asking. If `gh` is not authenticated or there is no remote, stop and say so — do not quietly write the issues to a Markdown file instead.
 
-Show the full list as a plan first: title, one-line goal, dependencies, in order.
-**Wait for approval before creating anything.**
-
-Once approved:
-
-```bash
-gh label list
-gh issue create --title "..." --body-file <path> --label "..."
-```
-
-Write each body to a temporary file rather than passing it inline — issue bodies contain
-Markdown, backticks and newlines that do not survive shell quoting.
-
-Use labels that already exist. Do not invent new ones without asking.
-
-If `gh` is not authenticated or there is no remote, stop and say so — do not write the
-issues to a Markdown file as a silent substitute unless the user asks for that.
-
-## Then
-
-Print the issue numbers and URLs, say which to start with and why, and list anything
-left blocked.
-
-Do not write application code.
+8. **Print the numbers and URLs**, say which to start with and why, and list anything still blocked. **No application code.**
