@@ -11,9 +11,7 @@ and it must keep none.
 
 Binding decisions:
 [ADR-0002](../../docs/adr/0002-strongly-typed-ids-and-value-objects.md),
-[ADR-0003](../../docs/adr/0003-aggregates-own-their-invariants.md),
-[ADR-0007](../../docs/adr/0007-single-currency-money-no-conversion.md),
-[ADR-0008](../../docs/adr/0008-order-carries-a-single-discount-amount.md).
+[ADR-0003](../../docs/adr/0003-aggregates-own-their-invariants.md).
 
 ## Entities
 
@@ -34,9 +32,10 @@ Binding decisions:
 - `record` for reference semantics, `record struct` for identities.
 - Validation in the constructor. An instance that exists is valid.
 - An explicit `Empty` in preference to nullability, where a natural empty exists.
-- `Money` always carries its `CurrencyName`. Never introduce a monetary concept without
-  deciding its currency — for anything not derived from a basket, that is an open
-  question, not an assumption (ADR-0007).
+- `Money` always carries its `CurrencyName`, and nothing converts between currencies
+  anywhere. Never introduce a monetary concept without deciding its currency — for
+  anything not derived from a Shopping Basket, that is an open question, not an
+  assumption. See **Money** in [the glossary](../../docs/glossary.md).
 
 ## Domain events
 

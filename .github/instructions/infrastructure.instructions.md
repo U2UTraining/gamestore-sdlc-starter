@@ -25,8 +25,7 @@ Domain or Application ([ADR-0001](../../docs/adr/0001-clean-architecture-layerin
   fields where needed. Do not relax an entity's encapsulation to make the mapping
   easier — fix the mapping.
 - `Money` maps as an owned type or two columns. It never becomes a bare `decimal` that
-  loses its currency
-  ([ADR-0007](../../docs/adr/0007-single-currency-money-no-conversion.md)).
+  loses its currency — see **Money** in [the glossary](../../docs/glossary.md).
 
 ## Repositories
 

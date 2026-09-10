@@ -29,9 +29,9 @@ the *implication* instead:
 
 > Bad: "Does an order support more than one discount?"
 >
-> Good: "`Order.ApplyDiscount` replaces the discount rather than adding to it, and
-> ADR-0008 says that is deliberate. This feature would be the second source of
-> discount. Should the two combine, or does one win?"
+> Good: "`Order.ApplyDiscount` replaces the discount rather than adding to it, and an
+> Order holds one Discount amount rather than a list. This feature would be the second
+> source of discount. Should the two combine, or does one win?"
 
 **Do not write any code.** Not a sketch, not an illustrative snippet, not a type
 definition. If you want to show a signature to make a question concrete, use prose.
@@ -65,9 +65,9 @@ doing it to something that has since been deleted.
 boundary? The weekend rule in `OrderPricingService` already has this shape — the
 question of which timezone decides "weekend" has never been answered.
 
-**Money.** Which currency, rounded how, and what happens on a mixed basket
-(ADR-0007)? Anything monetary that is not derived from a basket has no obvious currency,
-and that has to be settled before it can be modelled.
+**Money.** Which currency, rounded how, and what happens on a mixed basket — which the
+system rejects rather than converts. Anything monetary not derived from a Shopping
+Basket has no obvious currency, and that has to be settled before it can be modelled.
 
 **Who is allowed.** Who can do this, who can see it, what an administrator can override.
 There is no authentication in this system at all, which makes every answer here an

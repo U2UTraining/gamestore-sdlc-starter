@@ -46,7 +46,7 @@ The API allows any origin in Development, so no proxy is needed. If the catalogu
 | --- | --- |
 | [AGENTS.md](AGENTS.md) | How the coding agent should behave in this repository |
 | [docs/glossary.md](docs/glossary.md) | The ubiquitous language — binding for all code and docs |
-| [docs/adr/](docs/adr/) | Nine architecture decision records covering the existing design |
+| [docs/adr/](docs/adr/) | Seven architecture decision records covering the existing design |
 | [.github/skills/](.github/skills/) | Six skills: `interview`, `glossary-audit`, `design-options`, `spec`, `mockups`, `spec-to-issues` |
 | [.github/instructions/](.github/instructions/) | Layer-scoped rules, applied automatically per file |
 

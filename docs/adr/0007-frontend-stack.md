@@ -1,4 +1,4 @@
-# ADR-0009: The client is an Angular application with standalone components, Tailwind and DaisyUI, and state in signals
+# ADR-0007: The client is an Angular application with standalone components, Tailwind and DaisyUI, and state in signals
 
 - **Status:** accepted
 - **Date:** 2026-09-10

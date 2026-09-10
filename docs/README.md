@@ -21,9 +21,9 @@ written down somewhere it can be linked to.
 | --- | --- | --- | --- |
 | 1. Interview | `interview` | Shared understanding | The request, the codebase |
 | 2. Glossary | `glossary-audit` | Terms in `glossary.md` | The codebase |
-| 3. Design options | `design-options` | An ADR in `adr/` | Glossary, existing ADRs |
+| 3. (Optional) Design options | `design-options` | An ADR in `adr/` | Glossary, existing ADRs |
 | 4. Spec | `spec` | `specs/NNN-slug/spec.md` | Glossary, ADRs |
-| 5. Mockups | `mockups` | Options to compare; winner to `design/` | Spec |
+| 5. (Optional) Mockups | `mockups` | Options to compare; winner to `design/` | Spec |
 | 6. Issues | `spec-to-issues` | GitHub issues | Spec, ADRs, mockups |
 | 7. Implement | — | Code | Everything above |
 

@@ -9,7 +9,7 @@ applyTo: "src/Frontend/**"
 Angular client for the GameStore API. It lives in `src/Frontend/` and has four screens:
 the Game catalogue, a Game's detail, the Shopping Basket and Checkout.
 
-Binding decision: [ADR-0009](../../docs/adr/0009-frontend-stack.md).
+Binding decision: [ADR-0007](../../docs/adr/0007-frontend-stack.md).
 
 ## Language
 
@@ -50,7 +50,7 @@ There is no authentication. `customerId` is passed in the route.
 ## Stack
 
 Angular with standalone components, Tailwind and DaisyUI matching the mockups, and state
-held in signals inside services. [ADR-0009](../../docs/adr/0009-frontend-stack.md) has
+held in signals inside services. [ADR-0007](../../docs/adr/0007-frontend-stack.md) has
 the rules and the reasoning:
 
 - Components inject a service, never `HttpClient`.

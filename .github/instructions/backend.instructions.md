@@ -37,7 +37,7 @@ of them. Infrastructure implements them. Presentation wires them together.
 
 ## Money and identity
 
-Never a bare `decimal` for an amount — use `Money` (ADR-0002, ADR-0007). Never a bare
+Never a bare `decimal` for an amount — use `Money` (ADR-0002). Never a bare
 `int` for an identity — use the strongly-typed id. A new id type needs a converter
 registered in `ApplicationDbContext.ConfigureConventions` or it will fail at runtime.
 

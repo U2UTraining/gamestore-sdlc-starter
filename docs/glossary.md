@@ -58,7 +58,7 @@ style preference.
 | **Unit Price** | What one copy of a Game costs. On a Game it is `Price`; captured onto an Order Line at checkout as `UnitPrice`. | `Game.Price`, `OrderLine.UnitPrice` |
 | **Line Total** | Unit Price times quantity, for one line. Always derived, never stored. | `BasketLine.LineTotal`, `OrderLine.LineTotal` |
 | **Subtotal** | The sum of all Line Totals, before any Discount. | `ShoppingBasket.Subtotal`, `Order.Subtotal` |
-| **Discount** | The single amount subtracted from an Order's Subtotal. Today there is exactly one source: the weekend VIP rule. An Order holds **one** Discount amount, not a list of them — see [ADR-0008](adr/0008-order-carries-a-single-discount-amount.md). | `Order.Discount` |
+| **Discount** | The single amount subtracted from an Order's Subtotal. Today there is exactly one source: the weekend VIP rule. An Order holds **one** Discount amount, not a list of them, and `ApplyDiscount` replaces that amount rather than adding to it. | `Order.Discount` |
 | **Final Total** | Subtotal minus Discount. What the Customer owes. | `Order.FinalTotal` |
 | **Pricing** | Working out Subtotal, Discount and Final Total for a Basket and a Customer. Lives in a domain service because it depends on both, plus the calendar. | `Services/OrderPricingService.cs` |
 

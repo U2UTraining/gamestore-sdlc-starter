@@ -42,13 +42,35 @@ When you accept a new ADR, check whether an instruction file needs to change wit
 | [0004](0004-domain-events-dispatched-after-commit.md) | Domain events are dispatched by the use case after commit | accepted | application |
 | [0005](0005-use-cases-as-single-method-interfaces.md) | Use cases are single-method interfaces, one per file | accepted | application |
 | [0006](0006-minimal-api-endpoints-grouped-by-feature.md) | Minimal API endpoints grouped by feature, no controllers | accepted | presentation |
-| [0007](0007-single-currency-money-no-conversion.md) | Money carries its currency; no conversion at write time | accepted | domain |
-| [0008](0008-order-carries-a-single-discount-amount.md) | An Order carries a single discount amount | accepted | domain |
-| [0009](0009-frontend-stack.md) | Angular standalone components, Tailwind and DaisyUI, state in signals | accepted | frontend |
+| [0007](0007-frontend-stack.md) | Angular standalone components, Tailwind and DaisyUI, state in signals | accepted | frontend |
+
+## When something is *not* an ADR
+
+Most decisions are not. The test is whether the decision **constrains code that does not
+exist yet**. ADR-0005 tells you what to do when you add a use case nobody has written;
+ADR-0004 tells you where to put a consequence nobody has thought of. Those earn a
+record.
+
+A decision that merely describes the current shape of one class does not — the class
+already says it, and a second copy in `docs/` is one more thing to keep in step. That
+kind of fact belongs in [the glossary](../glossary.md) if it affects vocabulary, in the
+spec that introduced it if it affects one feature, or nowhere.
+
+Rough guide:
+
+| Write an ADR | Do not |
+| --- | --- |
+| Aggregate boundaries, who owns which invariant | The shape of one field on one entity |
+| A pattern other code has to follow | A choice local to one file and cheap to reverse |
+| A technology or integration choice | Anything that follows from an ADR already accepted |
+| A deliberate rejection of the general case, with a trigger to revisit | Something the code states plainly on its own |
+
+Seven records for a codebase this size is roughly right. An archive that grows with
+every feature stops being read, which defeats the point of having one.
 
 ## A note on dates
 
-ADRs 0001 to 0008 were recorded retrospectively on 2026-09-10. They document decisions
+ADRs 0001 to 0006 were recorded retrospectively on 2026-09-10. They document decisions
 that were already embodied in the code but had never been written down, which is the
 normal state of affairs when you introduce ADRs to an existing codebase. Their Context
 sections reconstruct the reasoning; they are honest but not contemporaneous.

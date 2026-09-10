@@ -4,7 +4,7 @@ The Angular client for the GameStore API. Four screens: the Game catalogue, a Ga
 detail, the Shopping Basket, and Checkout.
 
 The stack and the reasoning behind it are recorded in
-[ADR-0009](../../docs/adr/0009-frontend-stack.md). The rules that apply while editing
+[ADR-0007](../../docs/adr/0007-frontend-stack.md). The rules that apply while editing
 these files are in
 [.github/instructions/frontend.instructions.md](../../.github/instructions/frontend.instructions.md).
 
