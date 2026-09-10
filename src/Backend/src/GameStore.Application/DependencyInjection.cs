@@ -15,6 +15,7 @@ public static class DependencyInjection
     services.AddScoped<IUpdateGameUseCase, UpdateGameUseCase>();
     services.AddScoped<IAddItemToBasketUseCase, AddItemToBasketUseCase>();
     services.AddScoped<IGetGameByIdUseCase, GetGameByIdUseCase>();
+    services.AddScoped<IGetAllGamesUseCase, GetAllGamesUseCase>();
     services.AddScoped<IGetBasketByCustomerUseCase, GetBasketByCustomerUseCase>();
 
     services.AddScoped<IOrderPricingService, OrderPricingService>();

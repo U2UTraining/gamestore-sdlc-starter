@@ -1,4 +1,4 @@
-using GameStore.Application.UseCases;
+﻿using GameStore.Application.UseCases;
 using GameStore.Domain.Abstractions;
 using GameStore.Domain.ValueObjects;
 
@@ -64,6 +64,23 @@ internal static class GamesEndpoints
       {
         return Results.BadRequest(new { error = ex.Message });
       }
+    });
+
+    group.MapGet("", async (IGetAllGamesUseCase useCase, CancellationToken cancellationToken) =>
+    {
+      var games = await useCase.GetAll(cancellationToken);
+
+      return Results.Ok(games.Select(game => new
+      {
+        id = game.Id.Value,
+        name = game.Name,
+        price = game.Price.Amount,
+        currency = game.Price.Currency.ToString(),
+        stockQuantity = game.StockQuantity,
+        publisherId = game.Publisher.Id.Value,
+        publisherName = game.PublisherName,
+        imageUrl = game.ImageURL,
+      }));
     });
 
     group.MapGet("/{id:int}", async (int id, IGetGameByIdUseCase useCase, CancellationToken cancellationToken) =>
