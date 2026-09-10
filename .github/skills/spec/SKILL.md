@@ -11,7 +11,7 @@ description: "Use when writing a feature spec, specifying a feature, turning an 
 
 4. **Every noun in Requirements is a glossary term.** If the feature needs a concept the glossary lacks, do not coin a word — raise it as an open question and note that the glossary needs the entry first.
 
-5. **Link an ADR for each architectural constraint** instead of restating it. If the feature cannot be built within the accepted ADRs, name the one that must be superseded and stop; designing the replacement is the `interview` skill.
+5. **Link an ADR for each architectural constraint** instead of restating it. If the feature cannot be built within the accepted ADRs, name the one that must be superseded and stop; designing the replacement is the `adr` skill.
 
 6. **Each section has to pass its own test:**
    - **Goal** — one sentence, names who benefits, describes the outcome and not the work.

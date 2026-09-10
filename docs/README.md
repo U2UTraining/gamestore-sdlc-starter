@@ -13,22 +13,24 @@ ADRs as binding.
 
 ## The workflow
 
-Each step produces an artifact that the next step consumes. That chain is the point: by
-the time an issue is written, everything needed to work on it is already decided and
-written down somewhere it can be linked to.
+Each step feeds the next. The interview happens in the conversation and leaves no file
+behind — the spec is written in the same session, from what was agreed. From the spec
+onward everything is on disk, so by the time an issue exists, everything needed to work
+on it can be linked to.
 
 | Step | Skill | Produces | Consumes |
 | --- | --- | --- | --- |
 | 1. Interview | `interview` | Shared understanding | The request, the codebase |
 | 2. Glossary | `glossary-audit` | Terms in `glossary.md` | The codebase |
-| 3. Spec | `spec` | `specs/NNN-slug/spec.md` | Glossary, ADRs |
-| 4. (Optional) Mockups | `mockups` | Options to compare; winner to `design/` | Spec |
-| 5. Issues | `spec-to-issues` | GitHub issues | Spec, ADRs, mockups |
-| 6. Implement | — | Code | Everything above |
+| 3. (Rarely) ADR | `adr` | An ADR in `adr/` | Glossary, existing ADRs |
+| 4. Spec | `spec` | `specs/NNN-slug/spec.md` | Glossary, ADRs |
+| 5. (Optional) Mockups | `mockups` | Options to compare; winner to `design/` | Spec |
+| 6. Issues | `spec-to-issues` | GitHub issues | Spec, ADRs, mockups |
+| 7. Implement | — | Code | Everything above |
 
-There is no separate step for architecture decisions. When the interview turns up a
-choice that constrains code which does not exist yet, `interview` drafts the ADR as part
-of finishing — and when it does not, which is most of the time, nothing is written.
+Step 3 says **rarely** and means it. `interview` ends by saying whether an architectural
+choice surfaced — one that constrains code which does not exist yet — and most of the
+time the answer is no and nothing gets written.
 [docs/adr/README.md](adr/README.md) has the test.
 
 Each is a skill in [`.github/skills/`](../.github/skills/). The agent loads one when the
