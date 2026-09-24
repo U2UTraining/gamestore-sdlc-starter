@@ -45,8 +45,8 @@ it is the work.
 
 Nothing here is loaded automatically just by existing. The wiring is:
 
-- **[AGENTS.md](../AGENTS.md)** at the repository root is always in context, and it
-  points at the glossary and the ADR folder.
+- **[.github/copilot-instructions.md](../.github/copilot-instructions.md)** is always in
+  context, and it points at the glossary and the ADR folder.
 - **[.github/instructions/](../.github/instructions/)** holds globbed rules that are
   applied based on which files are being edited, and each one links the ADRs that
   justify it.

@@ -30,11 +30,9 @@ template and a mockup that use the same classes look the same.
 [The frontend-design skill](../skills/frontend-design/SKILL.md) describes the style and
 its rules.
 
-- Build templates from the design system's **component classes** (`btn`, `btn-primary`,
-  `btn-ghost`, `btn-sm`, `btn-xs`, `card`, `card-body`, `card-title`, `card-actions`,
-  `alert`, `alert-success`, `alert-warning`, `alert-error`, `badge`, `table`, `link`,
-  `skeleton`, `spinner`) and its **decorations** (`tape`, `tack`, `scribble`), with
-  Tailwind utilities for layout.
+- Build templates from the design system's **component classes** (`btn`, `card`,
+  `alert`, `badge`, …) and **decorations** (`tape`, `tack`, `scribble`) — the file's
+  header lists them — with Tailwind utilities for layout.
 - Colours, fonts, radii and shadows come from its **tokens**, used through Tailwind:
   `bg-postit`, `text-marker`, `border-pencil`, `font-display`, `rounded-wobbly`,
   `shadow-hard`. No raw hex values, no arbitrary colours, no blurred shadows, no standard
@@ -65,8 +63,7 @@ not a suggestion. When implementing a component that has one:
 ## API
 
 The backend is at `http://localhost:5038`. It allows any origin in Development
-(`Program.cs`), so there is no proxy here. Widening that policy, or making it apply
-outside Development, is a deliberate backend change.
+(`Program.cs`), so there is no proxy here.
 
 Responses are anonymous objects assembled by hand in the endpoints, so the wire shape is
 whatever those files say. Read the endpoint before writing the client model; do not
@@ -77,9 +74,7 @@ There is no authentication. `customerId` is passed in the route.
 
 ## Stack
 
-Angular with standalone components, Tailwind with the hand-drawn design system, and
-state held in signals inside services. [ADR-0007](../../docs/adr/0007-frontend-stack.md) has
-the rules and the reasoning:
+[ADR-0007](../../docs/adr/0007-frontend-stack.md) has the reasoning:
 
 - Components inject a service, never `HttpClient`.
 - Shared state lives in `core/*.service.ts` as read-only signals with `computed`
@@ -88,7 +83,3 @@ the rules and the reasoning:
   one of them: a screen is `loaded` and asks its data whether it is empty.
 - Wire shapes stay private to the service that calls the endpoint and are mapped onto
   glossary-named models on the way in.
-
-**Testing is still an open decision.** There is no spec in the project and no ADR for
-how to write one. When that has to be settled it is an ADR (`applies to: frontend`), not
-a choice made silently inside a component.

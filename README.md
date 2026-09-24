@@ -123,7 +123,7 @@ The API allows any origin in Development, so no proxy is needed. If the catalogu
 
 | | |
 | --- | --- |
-| [AGENTS.md](AGENTS.md) | How the coding agent should behave in this repository |
+| [.github/copilot-instructions.md](.github/copilot-instructions.md) | How the coding agent should behave in this repository |
 | [docs/glossary.md](docs/glossary.md) | The ubiquitous language — binding for all code and docs |
 | [docs/adr/](docs/adr/) | Seven architecture decision records covering the existing design |
 | [.github/skills/](.github/skills/) | Seven skills: `interview`, `adr`, `glossary-audit`, `spec`, `mockups`, `spec-to-issues`, and `frontend-design`, the style the client and every mockup are drawn in |

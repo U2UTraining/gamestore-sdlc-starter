@@ -9,7 +9,7 @@ description: "Use when a UI or interaction decision needs comparing — mockups,
 
 3. **Paste the design system in.** Copy [src/Frontend/src/design-system.css](../../../src/Frontend/src/design-system.css) verbatim and in full into the shell's `DESIGN SYSTEM` block. The client builds from the same file, so the mockup looks exactly like the app will. Read it first, and read [the frontend-design skill](../frontend-design/SKILL.md) for the rules of the hand-drawn style.
 
-4. **Build only from the design system**: its component classes (`btn`, `card`, `alert`, `badge`, `table`, `link`, `skeleton`, `spinner`), its decorations (`tape`, `tack`, `scribble`) and Tailwind utilities on its tokens (`bg-postit`, `text-marker`, `rounded-wobbly`, `shadow-hard`). No raw hex colours, no one-off styles. If an option genuinely needs something new, add it under `PROPOSED ADDITIONS` and name it in the comparison — picking that option means adding it to `design-system.css`.
+4. **Build only from the design system**: the component classes and decorations its header lists, and Tailwind utilities on its tokens (`bg-postit`, `rounded-wobbly`, `shadow-hard`). No raw hex colours, no one-off styles. If an option genuinely needs something new, add it under `PROPOSED ADDITIONS` and name it in the comparison — picking that option means adding it to `design-system.css`.
 
 5. **Show every state** in each file: populated, empty, loading, error, and the awkward edges — a very long Game name, a large number, a zero balance, a single item.
 

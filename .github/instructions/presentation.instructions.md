@@ -57,14 +57,14 @@ catch (DomainException ex)   => Results.BadRequest(new { error = ex.Message });
 catch (ArgumentException ex) => Results.BadRequest(new { error = ex.Message });
 ```
 
-A missing entity is `Results.NotFound()`. Keep the two exception types distinct even
-though both currently map to 400 — the distinction is deliberate
-([ADR-0003](../../docs/adr/0003-aggregates-own-their-invariants.md)).
+A missing entity is `Results.NotFound()`. Both exceptions currently map to 400, but keep
+the two catches separate ([ADR-0003](../../docs/adr/0003-aggregates-own-their-invariants.md)).
 
 The repetition is known and accepted. Do not introduce exception middleware as a side
 effect of another change; that is its own decision.
 
 ## CORS
 
-There is none. The Angular client will need it. Adding it is a deliberate change to
-`Program.cs`, not something to slip into an unrelated commit.
+`Program.cs` allows any origin, in Development only, for the Angular client. Widening
+that policy, or making it apply outside Development, is a deliberate change — not
+something to slip into an unrelated commit.

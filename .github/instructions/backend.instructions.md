@@ -32,21 +32,13 @@ of them. Infrastructure implements them. Presentation wires them together.
 - Primary constructors for dependency injection.
 - `internal sealed` for implementations; `public` only for the contract a consumer
   actually needs.
-- Domain terms come from [the glossary](../../docs/glossary.md). A type or property name
-  that uses a word from the "Words we do not use" table is a defect.
 
 ## Money and identity
 
 Never a bare `decimal` for an amount — use `Money` (ADR-0002). Never a bare
-`int` for an identity — use the strongly-typed id. A new id type needs a converter
-registered in `ApplicationDbContext.ConfigureConventions` or it will fail at runtime.
+`int` for an identity — use the strongly-typed id.
 
 ## Errors
 
 `DomainException` for a broken business rule. `ArgumentException` for malformed input.
 The distinction is load-bearing at the endpoint boundary — do not collapse it.
-
-## Tests
-
-There is no test project. Do not add one, or a test framework, as a side effect of
-another change. If work needs tests, raise it as its own decision.

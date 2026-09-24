@@ -15,10 +15,7 @@ description: "Use when an architectural decision needs recording — comparing a
 
 3. **Recommend one.** Say what separated it from the runner-up, and what fact would change your mind — specific enough that the user could go and check.
 
-4. **Draft it.** Copy [assets/adr-template.md](assets/adr-template.md) to `docs/adr/NNNN-slug.md` at the next free number, `Status: proposed`, and add its row to the index.
-   - **Context** — the forces, in the present tense of this moment, never revised later. Not the answer.
-   - **Considered options** — all three, rejections with their real reasons. No strawmen.
-   - **Consequences** — actual costs. All upside means it is not finished.
+4. **Draft it.** Copy [assets/adr-template.md](assets/adr-template.md) to `docs/adr/NNNN-slug.md` at the next free number, `Status: proposed`, and add its row to the index. The template says what each section needs; all three options go under **Considered options**.
 
 5. **Superseding an accepted ADR** means saying so in the new one and changing **only** the status line of the old.
 

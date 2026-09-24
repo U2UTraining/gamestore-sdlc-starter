@@ -51,6 +51,5 @@ Implement `IDomainService`. If the logic fits on an entity, put it on the entity
 
 ## Language
 
-Every type, property and method name is bound by [the glossary](../../docs/glossary.md).
-The domain layer is the *authority* for that vocabulary — a name introduced here becomes
-the term everywhere else. Add the glossary entry before adding the type.
+The domain layer is the *authority* for the glossary's vocabulary — a name introduced
+here becomes the term everywhere else. Add the glossary entry before adding the type.

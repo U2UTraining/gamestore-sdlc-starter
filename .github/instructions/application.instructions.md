@@ -47,8 +47,7 @@ transaction that did not commit.
 
 Handlers implement `IDomainEventHandler<TEvent>`, live in `EventHandlers/`, and are
 registered in `Infrastructure/DependencyInjection.cs` — not here. Several handlers may
-subscribe to one event; they run sequentially in registration order, in-process, inside
-the request.
+subscribe to one event; they run in-process, inside the request.
 
 There is no retry and no outbox. A handler that throws leaves the committed change in
 place and its consequence undone. If that is unacceptable for what you are adding, say
@@ -57,7 +56,7 @@ so rather than building a private retry.
 ## Repository interfaces
 
 Declared here, implemented in Infrastructure. They return domain aggregates, never
-DTOs, and never `IQueryable`.
+DTOs, and never `IQueryable` or any other EF Core type.
 
 ## Boundaries
 

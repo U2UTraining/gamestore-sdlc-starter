@@ -33,8 +33,6 @@ Return domain aggregates, fully loaded enough to satisfy their invariants. Inclu
 navigation properties the aggregate needs — a `ShoppingBasket` without its lines cannot
 recalculate its own subtotal.
 
-Never leak `IQueryable` or EF Core types past the interface.
-
 ## Messaging
 
 `DomainEventPublisher` resolves every `IDomainEventHandler<TEvent>` from the container

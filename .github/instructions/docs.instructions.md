@@ -25,16 +25,10 @@ layer is the authority on the glossary.
 ## ADRs
 
 [docs/adr/](../../docs/adr/) — one numbered file per decision, **immutable once
-accepted**.
+accepted**. The `adr` skill and its template say how to write one.
 
 - Never edit an accepted ADR except to change its status line to
   `superseded by ADR-NNNN`.
-- **Context** is written in the present tense of the moment and never revised. A reader
-  needs to know what you knew, not what you learned later.
-- **Considered options** includes the rejected ones with their real reasons. Strawmen
-  make the record worthless.
-- **Consequences** contains costs. All-upside consequences mean the section is not
-  finished.
 - New ADR: next free number, `Status: proposed`, add a row to the index in
   [docs/adr/README.md](../../docs/adr/README.md).
 - When you accept an ADR, check whether an instruction file in `.github/instructions/`
@@ -43,13 +37,8 @@ accepted**.
 
 ## Specs
 
-[docs/specs/](../../docs/specs/) — `NNN-slug/spec.md`, six fixed sections.
-
-- Do not invent requirements. What cannot be determined goes under **Open questions**,
-  with an owner.
-- Every noun in Requirements is a glossary term.
-- Link the ADR for each architectural constraint instead of restating it.
-- Numbers are never reused or renumbered.
+[docs/specs/](../../docs/specs/) — `NNN-slug/spec.md`. The `spec` skill and its template
+say how to write one. Numbers are never reused or renumbered.
 
 ## Mockups
 
@@ -60,5 +49,4 @@ that produced them, or nowhere.
 ## Style
 
 - Link rather than repeat. Two copies of a rule become two different rules.
-- Cite `file:line` when asserting how the code currently behaves.
 - Say what something costs, not only what it gives.

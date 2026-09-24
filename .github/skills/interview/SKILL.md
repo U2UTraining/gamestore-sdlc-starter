@@ -8,7 +8,7 @@ understanding.
 
 1. If a question can be answered by exploring the codebase, explore the codebase instead.
 
-2. One question at a time.
+2. One question at a time, asked with your ask-the-user tool so the user answers in a prompt. Only fall back to plain chat text if no such tool is available.
 
 3. Propose options and a recommendation if useful. Options are about the business rule, never the implementation.
 
