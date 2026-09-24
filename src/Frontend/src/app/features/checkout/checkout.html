@@ -2,7 +2,7 @@
 
 @if (placed()) {
   <!-- Placed: the Shopping Basket has been cleared by the API. -->
-  <div class="card tack mx-auto max-w-lg -rotate-1 bg-accent shadow-hard-lg">
+  <div class="card tack mx-auto max-w-lg -rotate-1 bg-postit shadow-hard-lg">
     <div class="card-body items-center gap-4 p-8 text-center">
       <p class="font-display text-4xl">
         Your Order has been placed<span class="inline-block rotate-12 text-marker">!</span>
@@ -18,7 +18,7 @@
   @switch (shoppingBasket.state()) {
     <!-- Loading -->
     @case ('loading') {
-      <div class="card bg-base-100">
+      <div class="card">
         <div class="card-body space-y-3 p-8">
           @for (placeholder of loadingPlaceholders; track placeholder) {
             <div class="skeleton h-10 w-full"></div>
@@ -41,7 +41,7 @@
     <!-- Loaded -->
     @default {
       @if (shoppingBasket.isEmpty()) {
-        <div class="card tack mx-auto max-w-md rotate-1 bg-accent">
+        <div class="card tack mx-auto max-w-md rotate-1 bg-postit">
           <div class="card-body items-center text-center">
             <h2 class="card-title text-3xl">There is nothing to check out</h2>
             <p class="opacity-70">Your Shopping Basket is empty.</p>
@@ -50,7 +50,7 @@
         </div>
       } @else {
         <!-- The Order is written out like a receipt. -->
-        <div class="card tape mx-auto max-w-2xl bg-base-100">
+        <div class="card tape mx-auto max-w-2xl">
           <div class="card-body p-6 md:p-8">
             <h2 class="card-title text-3xl">Your Order</h2>
 
@@ -99,7 +99,7 @@
                 (click)="placeOrder()"
               >
                 @if (placing()) {
-                  <span class="loading loading-spinner loading-sm"></span>
+                  <span class="spinner"></span>
                 }
                 Place Order
               </button>

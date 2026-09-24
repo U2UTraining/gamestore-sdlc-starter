@@ -3,7 +3,7 @@
 @switch (state()) {
   <!-- Loading -->
   @case ('loading') {
-    <div class="card tack bg-base-100">
+    <div class="card tack">
       <div class="card-body gap-8 p-8 md:flex-row">
         <div class="skeleton h-56 w-full md:w-72"></div>
         <div class="flex-1 space-y-4">
@@ -30,7 +30,7 @@
   <!-- Loaded -->
   @default {
     @if (notFound()) {
-      <div class="card tack mx-auto max-w-md -rotate-1 bg-accent">
+      <div class="card tack mx-auto max-w-md -rotate-1 bg-postit">
         <div class="card-body items-center text-center">
           <h1 class="card-title text-3xl">This Game does not exist</h1>
           <p class="opacity-70">There is no Game with id {{ id() }} in the catalogue.</p>
@@ -38,11 +38,11 @@
         </div>
       </div>
     } @else if (game(); as game) {
-      <article class="card tack bg-base-100 shadow-hard-lg">
+      <article class="card tack shadow-hard-lg">
         <div class="card-body gap-10 p-8 md:flex-row">
           <!-- The Image is pinned to the page like a photograph. -->
           <figure
-            class="tape h-56 w-full shrink-0 -rotate-2 overflow-visible border-[3px] border-pencil bg-base-300 shadow-hard md:w-72"
+            class="tape h-56 w-full shrink-0 -rotate-2 overflow-visible border-[3px] border-pencil bg-erased shadow-hard md:w-72"
           >
             <img
               [src]="game.imageUrl"
@@ -82,7 +82,7 @@
                   &minus;
                 </button>
                 <span
-                  class="flex h-10 w-14 items-center justify-center border-2 border-dashed border-pencil bg-base-100 font-display text-2xl rounded-wobbly"
+                  class="flex h-10 w-14 items-center justify-center border-2 border-dashed border-pencil bg-white font-display text-2xl rounded-wobbly"
                 >
                   {{ quantity() }}
                 </span>
@@ -103,7 +103,7 @@
                 (click)="addToShoppingBasket(game)"
               >
                 @if (adding()) {
-                  <span class="loading loading-spinner loading-sm"></span>
+                  <span class="spinner"></span>
                 }
                 Add to Shopping Basket
               </button>

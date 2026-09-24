@@ -42,7 +42,7 @@ When you accept a new ADR, check whether an instruction file needs to change wit
 | [0004](0004-domain-events-dispatched-after-commit.md) | Domain events are dispatched by the use case after commit | accepted | application |
 | [0005](0005-use-cases-as-single-method-interfaces.md) | Use cases are single-method interfaces, one per file | accepted | application |
 | [0006](0006-minimal-api-endpoints-grouped-by-feature.md) | Minimal API endpoints grouped by feature, no controllers | accepted | presentation |
-| [0007](0007-frontend-stack.md) | Angular standalone components, Tailwind and DaisyUI, state in signals | accepted | frontend |
+| [0007](0007-frontend-stack.md) | Angular standalone components, Tailwind with our own hand-drawn design system, state in signals | accepted | frontend |
 
 ## When something is *not* an ADR
 

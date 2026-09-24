@@ -126,7 +126,7 @@ The API allows any origin in Development, so no proxy is needed. If the catalogu
 | [AGENTS.md](AGENTS.md) | How the coding agent should behave in this repository |
 | [docs/glossary.md](docs/glossary.md) | The ubiquitous language — binding for all code and docs |
 | [docs/adr/](docs/adr/) | Seven architecture decision records covering the existing design |
-| [.github/skills/](.github/skills/) | Six skills: `interview`, `adr`, `glossary-audit`, `spec`, `mockups`, `spec-to-issues` |
+| [.github/skills/](.github/skills/) | Seven skills: `interview`, `adr`, `glossary-audit`, `spec`, `mockups`, `spec-to-issues`, and `frontend-design`, the style the client and every mockup are drawn in |
 | [.github/instructions/](.github/instructions/) | Layer-scoped rules, applied automatically per file |
 
 ## The workflow
@@ -154,7 +154,7 @@ src/Backend/            .NET solution
   src/GameStore.Application/     use cases, repository interfaces, event handlers
   src/GameStore.Infrastructure/  EF Core, repositories, messaging
   src/GameStore.Presentation/    minimal API endpoints
-src/Frontend/           Angular client (four screens, Tailwind + DaisyUI)
+src/Frontend/           Angular client (four screens, Tailwind + a hand-drawn design system)
   src/app/core/                  API config, models, services holding state in signals
   src/app/shared/                the Money pipe
   src/app/features/              game-catalogue, game-detail, shopping-basket, checkout

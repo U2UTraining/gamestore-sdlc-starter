@@ -1,6 +1,6 @@
 <div class="min-h-screen">
   <header class="border-b-[3px] border-dashed border-pencil">
-    <div class="navbar mx-auto max-w-5xl flex-wrap gap-4 px-4 py-4">
+    <div class="flex items-center mx-auto max-w-5xl flex-wrap gap-4 px-4 py-4">
       <div class="flex-1">
         <a
           routerLink="/games"
@@ -20,7 +20,7 @@
         >
           Shopping Basket
           @if (shoppingBasket.gameCount() > 0) {
-            <span class="badge badge-primary badge-sm rotate-6">{{ shoppingBasket.gameCount() }}</span>
+            <span class="badge rotate-6">{{ shoppingBasket.gameCount() }}</span>
           }
         </a>
       </nav>

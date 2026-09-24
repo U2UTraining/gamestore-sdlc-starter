@@ -10,7 +10,7 @@ changed, the mockup is the reference:
 
 ```
 Implement the product listing to match docs/design/listing-cards.html.
-Keep the DaisyUI classes. Include the empty and loading states shown
+Use the design system classes it uses. Include the empty and loading states shown
 in the mockup. Do not change the layout.
 ```
 
@@ -32,7 +32,10 @@ the next person is told to match something that is no longer true.
 
 ## Conventions
 
-- Tailwind and DaisyUI from a CDN, so the file opens in a browser with no build step.
+- Tailwind's browser build from a CDN, with [src/Frontend/src/design-system.css](../../src/Frontend/src/design-system.css)
+  pasted in, so the file opens in a browser with no build step and looks exactly like the
+  client. The pasted copy is a snapshot: if the two disagree about how a component looks,
+  the file in `src/` wins; the mockup still decides the layout.
 - Realistic content. Real game names, real prices in the right currency format, the
   kind of names that are actually too long.
 - Static HTML. No framework, no data fetching, no build tooling. The point is the

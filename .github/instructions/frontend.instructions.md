@@ -21,6 +21,30 @@ rather than a modelling one.
 Component, service and model names use glossary terms too: `BasketLine`, not
 `CartItem`.
 
+## Design system
+
+The client looks hand-drawn, and all of that look is defined in one file:
+[src/Frontend/src/design-system.css](../../src/Frontend/src/design-system.css).
+`styles.css` imports it after Tailwind, and every mockup pastes in the same file, so a
+template and a mockup that use the same classes look the same.
+[The frontend-design skill](../skills/frontend-design/SKILL.md) describes the style and
+its rules.
+
+- Build templates from the design system's **component classes** (`btn`, `btn-primary`,
+  `btn-ghost`, `btn-sm`, `btn-xs`, `card`, `card-body`, `card-title`, `card-actions`,
+  `alert`, `alert-success`, `alert-warning`, `alert-error`, `badge`, `table`, `link`,
+  `skeleton`, `spinner`) and its **decorations** (`tape`, `tack`, `scribble`), with
+  Tailwind utilities for layout.
+- Colours, fonts, radii and shadows come from its **tokens**, used through Tailwind:
+  `bg-postit`, `text-marker`, `border-pencil`, `font-display`, `rounded-wobbly`,
+  `shadow-hard`. No raw hex values, no arbitrary colours, no blurred shadows, no standard
+  `rounded-*` corners on containers.
+- No component stylesheets and no inline `style`. If something cannot be built from
+  the design system, add it to `design-system.css` — a new component or token is a
+  change to the design system, made on purpose, not a one-off in a template.
+- No UI component library; [ADR-0007](../../docs/adr/0007-frontend-stack.md) says why.
+- There is one light palette and no dark mode. That is part of the style, not a gap.
+
 ## Implementing against a mockup
 
 Accepted mockups live in [docs/design/](../../docs/design/) and are the **reference**,
@@ -28,7 +52,11 @@ not a suggestion. When implementing a component that has one:
 
 - Match the layout. Do not improve it in passing — if it is wrong, say so and change the
   mockup first.
-- Keep the DaisyUI classes from the mockup.
+- Use the same design-system classes and tokens as the mockup.
+- A mockup carries a snapshot of `design-system.css` from the day it was made. Where
+  the two disagree about how a component looks, the file in `src/` wins; the mockup
+  still decides the layout. Anything under the mockup's `PROPOSED ADDITIONS` goes into
+  `design-system.css` as part of the implementation.
 - Implement **every state the mockup shows**: populated, empty, loading, error, and the
   edges. A mockup shows those states specifically so they do not get skipped.
 - If the implementation has to diverge, update the mockup in the same change. Otherwise
@@ -49,8 +77,8 @@ There is no authentication. `customerId` is passed in the route.
 
 ## Stack
 
-Angular with standalone components, Tailwind and DaisyUI matching the mockups, and state
-held in signals inside services. [ADR-0007](../../docs/adr/0007-frontend-stack.md) has
+Angular with standalone components, Tailwind with the hand-drawn design system, and
+state held in signals inside services. [ADR-0007](../../docs/adr/0007-frontend-stack.md) has
 the rules and the reasoning:
 
 - Components inject a service, never `HttpClient`.
